@@ -1,42 +1,116 @@
-<div data-role="header" data-position="fixed" data-theme="a">
-    <a href="../toolbar/" data-rel="back" class="ui-btn ui-btn-left ui-alt-icon ui-nodisc-icon ui-corner-all ui-btn-icon-notext ui-icon-carat-l">Back</a>
-    <h1>Info</h1>
+
+<div data-role="header" data-position="fixed" >
+    <h1 class="ui-title">Page Title</h1>
 </div><!-- /header -->
+<li role="main" class="ui-content jqm-content jqm-fullwidth">
 
-<div data-role="page" data-title="Info" class="jqm-demos">
+    <h1>Fixed toolbars</h1>
 
-    <div role="main" class="ui-content jqm-content jqm-fullwidth">
+    <p>In browsers that support CSS <code>position: fixed</code> (most desktop browsers, iOS5+, Android 2.2+, and others), toolbars that use the "fixedtoolbar" plugin will be fixed to the top or bottom of the viewport, while the page content scrolls freely in between. In browsers that don't support fixed positioning, the toolbars will remain positioned in flow, at the top or bottom of the page. </p>
 
-        <h1>Persistent toolbars</h1>
+    <a href="#" data-ajax="false" class="jqm-deeplink jqm-open-quicklink-panel ui-icon-carat-l ui-alt-icon">Quick Links</a><h2 id="Fixedbasics">Fixed basics</h2>
+    <p>To enable this behavior on a header or footer, add the <code>data-position="fixed"</code> attribute to a jQuery Mobile header or footer element.</p>
 
-        <p>These pages are a demo of a persistent <a href="../navbar/">navbar</a> in a fixed footer toolbar. Click on any of the links in the footer, and you'll see the page content transition. Both the persistent header and footer on these pages remain in place during the animation to a new HTML page.</p>
+    <p>Fixed header markup example:</p>
 
-        <p>With the new external toolbars no extra effort is required to now have persistent toolbars. Simply place them outside of the page container on each page they will be loaded on the first page and persist on subsequent pages. The toolbars still need to be placed on each page to account for refresh however they will be ignored if not within a page container.</p>
+    <pre><code>
+&lt;div data-role="header" <strong>data-position="fixed"</strong>&gt;
+    &lt;h1&gt;Fixed Header!&lt;/h1&gt;
+&lt;/div&gt;
+</code></pre>
 
-        <p>Typically, the persistent toolbar technique will be combined with fixed positioning.</p>
+    <p>Fixed footer markup example:</p>
 
-        <h2>Updating toolbar contents</h2>
+    <pre><code>
+&lt;div data-role="footer" <strong>data-position="fixed"</strong>&gt;
+    &lt;h1&gt;Fixed Footer!&lt;/h1&gt;
+&lt;/div&gt;
+</code></pre>
 
-        <p>Because the same toolbar is used on every page, you might want to update the content. In this demo we show how to change the heading in the header and set the nav button of the page currently in view to the active state.</p>
+    <a href="#ui-page-top" class="jqm-deeplink ui-icon-carat-u ui-alt-icon">Top</a><h2 id="FullscreenToolbars">Fullscreen Toolbars</h2>
 
-        <div data-demo-js="true"></div>
+    <p><a href="../toolbar-fixed-fullscreen/" data-ajax="false" class="ui-link">Fullscreen</a> fixed toolbars sit on top of the content at all times when they are visible, and unlike regular fixed toolbars, fullscreen toolbars do not fall back to static positioning when toggled. Instead they disappear from the screen entirely. Fullscreen toolbars are ideal for more immersive interfaces, like a photo viewer that is meant to fill the entire screen with the photo itself and no distractions.</p>
 
-        <h2>Improving page load with persistent toolbars</h2>
+    <p>To enable this option on a fixed header or footer, add the <code>data-fullscreen</code> attribute to the element.</p>
 
-        <p>By combining this technique with a little bit of server side logic you can reduce the file size for each page load significantly by not sending anything except the actual page container back when the request is from ajax. this not only reduces file size but makes the actual processing of the page quicker also. To see an example of this technique see <a href="../toolbar-fixed-persistent-optimized/" data-ajax="false">Ajax optimized persistent toolbars</a></p>
+    <pre><code>
+&lt;div data-role="header" data-position="fixed" data-fullscreen="true"&gt;
+    &lt;h1&gt;Fixed Header!&lt;/h1&gt;
+&lt;/div&gt;
+</code></pre>
 
-        <h3>A note about transitions</h3>
+    <a href="#ui-page-top" class="jqm-deeplink ui-icon-carat-u ui-alt-icon">Top</a><h2 id="Formsintoolbars">Forms in toolbars</h2>
 
-        <p>By Removing the toolbars from the page container they are no longer part of the page transition which dramaticly improves the performance of complex 3D page transitions over the older style of persistent toolbars.</p>
+    <p>While all form elements are now tested to work correctly within <em>static</em> toolbars as of jQuery Mobile 1.1, we recommend extensive testing when using form elements within <em>fixed</em> toolbars or within any <code>position: fixed</code> elements. This can potentially trigger a number of unpredictable issues in various mobile browsers, Android 2.2/2.3 in particular (detailed in <b>Known issues in Android 2.2/2.3</b>, below).</p>
 
-    </div><!-- /content -->
+    <p><a href="../toolbar-fixed-forms/" data-ajax="false" class="ui-link">Forms in toolbar example</a></p>
 
-</div><!-- /page -->
+    <a href="#ui-page-top" class="jqm-deeplink ui-icon-carat-u ui-alt-icon">Top</a><h2 id="ChangesinjQueryMobile1.1">Changes in jQuery Mobile 1.1</h2>
 
-<div data-role="footer" data-position="fixed" data-theme="a">
-    <div data-role="navbar">
+    <p>Prior to version 1.1, jQuery Mobile used dynamically re-positioned toolbars for the fixed header effect because very few mobile browsers supported the <code>position:fixed</code> CSS property, and simulating fixed support through the use of "fake" JavaScript overflow-scrolling behavior would have reduced our browser support reach, in addition to feeling unnatural on certain platforms. This behavior was not ideal, and jQuery Mobile 1.1 took a new approach to fixed toolbars that allows much broader support. The framework now offers true fixed toolbars on many popular platforms, while gracefully degrading non-supporting platforms to static positioning.</p>
+
+    <h3>Polyfilling older platforms</h3>
+    <p>The fixed toolbar plugin degrades gracefully in platforms that do not support CSS <code>position:fixed</code> properly, such as iOS4.3. If you still need to support fixed toolbars on that platform (with the show/hide behavior) included in previous releases, Filament Group has developed a polyfill that you can use.</p>
+
+    <ul><li><a href="http://slashdot.org/" class="ui-link">Slashdot</a></li><li><a href="http://www.intel.com/" class="ui-link">Intel</a></li></ul>
+    <ul>
+        <li><a href="https://github.com/filamentgroup/jQuery-Mobile-FixedToolbar-Legacy-Polyfill" class="ui-link">Github code repository with CSS, and JavaScript required for the fixed toolbars polyfill</a></li>
+        <li><a href="http://filamentgroup.github.com/jQuery-Mobile-FixedToolbar-Legacy-Polyfill/" class="ui-link">Preview URL using the code in the repo above</a></li>
+    </ul>
+
+    <p>Just include the CSS and JS files after your references to jQuery Mobile and Fixed toolbars will work similarly to jQuery Mobile 1.0 in iOS4.3, with the inclusion of the new API for the 1.1 fixedtoolbar plugin.</p>
+
+    <p>If you have any improvements to suggest, fork the <a href="https://github.com/filamentgroup/jQuery-Mobile-FixedToolbar-Legacy-Polyfill" class="ui-link">gist</a> on github and let us know!</p>
+
+    <a href="#ui-page-top" class="jqm-deeplink ui-icon-carat-u ui-alt-icon">Top</a><h2 id="Knownissuewithformcontrolsinsidefixedtoolbarsandprogrammaticscroll">Known issue with form controls inside fixed toolbars, and programmatic scroll</h2>
+    <p>An obscure issue exists in iOS5 and some Android platforms where form controls placed inside fixed-positioned containers can lose their hit area when the window is programatically scrolled (using <code>window.scrollTo</code> for example). This is not an issue specific to jQuery Mobile, but because of it, we recommend not programatically scrolling a document when using form controls inside jQuery Mobile fixed toolbars. <a href="https://github.com/scottjehl/Device-Bugs/issues/1" class="ui-link">This ticket</a> from the <a href="https://github.com/scottjehl/Device-Bugs/" class="ui-link">Device Bugs project</a> tracker explains this problem in more detail.</p>
+
+    <a href="#ui-page-top" class="jqm-deeplink ui-icon-carat-u ui-alt-icon">Top</a><h2 id="KnownissuesinAndroid2.22.3">Known issues in Android 2.2/2.3</h2>
+    <p>Android 2.2/2.3's implementation of <code>position: fixed;</code> can, in conjunction with seemingly unrelated styles and markup patterns, cause a number of strange issues, particularly in the case of <code>position: absolute</code> elements inside of <code>position: fixed</code> elements. While we've done our best to work around a number of these unique bugs within the scope of the library, custom styles may cause a number of issues.</p>
+    <ul>
+        <li>Form elements elsewhere on the page—select menus in particular—can fail to respond to user interaction when an <em>empty</em> absolute positioned element is placed within a fixed position element. In rare cases—and specific to Android 2.2—this can cause <em>entire pages</em> to fail to respond to user interaction. This can seemingly be solved by adding any character to the absolute positioned element, including a non-breaking space, and in some cases even whitespace.</li>
+        <li>The above-described issue can also be triggered by an absolute positioned image inside of a fixed position element, but <em>only</em> when that image is using something <em>other than its inherent dimensions</em>. If a height or width is specified on the image using CSS, or the image src is invalid (thus having no inherent height and width), this issue can occur. If an image that is inherently, say, 50x50 pixels is placed in a fixed element and left at its inherent dimensions, this issue does not seem to occur.</li>
+        <li>When a <code>position: fixed</code> element appears anywhere on a page, most 2D CSS transforms will fail. Oddly, only <code>translate</code> transforms seem unaffected by this. Even more oddly, this issue is solved by setting a CSS <code>opacity</code> of .9 or below on the parent of the fixed element.</li>
+        <li>Combinations of <code>position: fixed</code> and overflow properties are best avoided, as both have been known to cause unpredictable issues in older versions of Android OS.</li>
+        <li>Any element that triggers the on-screen keyboard, when placed inside a <code>position: fixed</code> element, will fail to respond to user input when using anything other than the default keyboard. This includes Swype, XT9 or, it seems, any input method apart from the standard non-predictive keyboard.</li>
+    </ul>
+
+    <p>While we will continue to try to find ways to mitigate these bugs as best we can, we currently advise against implementing fixed toolbars containing complicated user styles and form elements without extensive testing in all versions of Android's native browser.</p>
+
+    <a href="#ui-page-top" class="jqm-deeplink ui-icon-carat-u ui-alt-icon">Top</a><h2 id="Nolongersupported:touchOverflowEnabled">No longer supported: touchOverflowEnabled</h2>
+
+    <p>Prior to jQuery Mobile 1.1, true fixed toolbar support was contingent on native browser support for the CSS property <code>overflow-scrolling: touch</code>, which is currently only supported in iOS5. As of version 1.1, jQuery Mobile no longer uses this CSS property at all. We've removed all internal usage of this property in the framework, but we've left it defined globally on the $.mobile object to reduce the risk that its removal will cause trouble with existing applications. This property is flagged for removal, so please update your code to no longer use it. The support test for this property, however, remains defined under <code>$.support</code> and we have no plans to remove that test at this time. </p>
+    <ul data-role="listview">
+            <li>Acura</li>
+            <li>Audi</li>
+            <li>BMW</li>
+            <li>Cadillac</li>
+            <li>Ferrari</li>
+    </ul>
+
+    <div class="ui-grid-d center">
+    <div class="ui-block-a"><a class="ui-shadow ui-btn ui-corner-all ui-icon-home ui-btn-icon-notext ui-btn-inline">Button</a></div>
+    <div class="ui-block-b"><a class="ui-shadow ui-btn ui-corner-all ui-icon-arrow-l ui-btn-icon-notext ui-btn-inline">Button</a></div>
+    <div class="ui-block-c"><a class="ui-shadow ui-btn ui-corner-all ui-icon-grid ui-btn-icon-notext ui-btn-inline">Button</a></div>
+    <div class="ui-block-d"><a class="ui-shadow ui-btn ui-corner-all ui-icon-arrow-r ui-btn-icon-notext ui-btn-inline">Button</a></div>
+    <div class="ui-block-e"><a class="ui-shadow ui-btn ui-corner-all ui-icon-gear ui-btn-icon-notext ui-btn-inline">Button</a></div>
+    </div>
+
+
+
+
+
+</div>
+
+
+<div data-role="footer" data-position="fixed">
+    <div data-role="navbar" data-iconpos="top" data-grid="c" >
         <ul>
-            <li><a href="index.html" data-transition="fade">Info</a></li>
+            <li><a href="#" data-icon="grid">Chat</a></li>
+            <li><a href="#" data-icon="grid">Email</a></li>
+            <li><a href="#" data-icon="grid">Danger</a></li>
+            <li><a href="#" data-icon="grid">Beerdsad</a></li>
         </ul>
-    </div><!-- /navbar -->
-</div><!-- /footer -->
+    </div>
+</div>
+

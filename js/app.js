@@ -19,9 +19,14 @@ define([
 
 	// 加载国际化文件
 	$.getScript('/lib/angular/i18n/angular-locale_'+lang+'.js');
-	
-	
-	
+
+
+
+
+	$( document ).on( "mobileinit", function() {
+		$.mobile.page.prototype.options.domCache = false;// 关闭缓存
+		$.mobile.initializePage = false;
+	});
 	
 	
 	return angular.module('faceinner', [

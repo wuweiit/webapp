@@ -68,6 +68,9 @@ var options = {
        , 'loading':{
     	   deps:['jquery']
        }
+       ,'jquerymobile':{
+            deps:['jquery']
+        }
        , 'umeditor':{
            deps:['jquery','umeditorConfig']
        }
@@ -85,11 +88,11 @@ switch (mode){
 
 
         break;
-    case 'pad':// 平板端使用jquerymobile
+    case 'pad':// 平板端使用
 
 
         break;
-    case 'mobile': // 手机端依赖于amazon ui
+    case 'mobile': // 手机端依赖于
         options.deps = ['jquerymobile', 'loading', 'api', 'ajax']
         break;
 }
