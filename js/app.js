@@ -26,6 +26,7 @@ define([
 	$( document ).on( "mobileinit", function() {
 		$.mobile.page.prototype.options.domCache = false;// 关闭缓存
 		$.mobile.initializePage = false;
+		$.mobile.defaultPageTransition = "fade";
 	});
 	
 	

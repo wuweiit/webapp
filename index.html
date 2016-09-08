@@ -2,6 +2,7 @@
 <html lang="zh-CN">
 <head>
 	<title>App</title>
+    <meta charset="utf-8" />
 	<meta name="keywords" content="webapp">
 	<meta name="description" content="webapp">
 	<meta name="author" content="marker">
@@ -19,6 +20,18 @@
 <body ng-cloak  ng-controller="indexController" >
 
 	 <div ng-view></div>
+
+
+	 <div data-role="footer" data-position="fixed">
+		 <div data-role="navbar" data-iconpos="top" data-grid="c">
+			 <ul>
+				 <li><a href="#/index.html" data-icon="grid">首页</a></li>
+				 <li><a href="#/category.html" data-icon="grid">分类</a></li>
+				 <li><a href="#/shopcar.html" data-icon="grid">购物车</a></li>
+				 <li><a href="#/user.html" data-icon="grid">我的</a></li>
+			 </ul>
+		 </div>
+	 </div>
 
 
 

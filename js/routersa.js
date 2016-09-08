@@ -137,7 +137,21 @@ app.config(['$routeProvider','$locationProvider', function($routeProvider, $loca
 			templateUrl: '/view/home/index.htm'
 			, controllerUrl: '/view/home/app.js'
 		}))
-
+        /** 用户 */
+        .when('/user.html', router({
+            templateUrl: '/view/user/index.htm'
+            , controllerUrl: '/view/user/app.js'
+        }))
+        /** 分类 */
+        .when('/category.html', router({
+            templateUrl: '/view/category/index.htm'
+            , controllerUrl: '/view/category/app.js'
+        }))
+        /** 购物车 */
+        .when('/shopcar.html', router({
+            templateUrl: '/view/shopcar/index.htm'
+            , controllerUrl: '/view/shopcar/app.js'
+        }))
 
 
 
